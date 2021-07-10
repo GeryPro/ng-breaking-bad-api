@@ -6,7 +6,6 @@ import { HttpService } from 'src/app/services/http.service';
 @Component({
 	selector: 'app-characters',
 	templateUrl: './characters.component.html',
-	styleUrls: ['./characters.component.css'],
 })
 export class CharactersComponent implements OnInit, OnDestroy {
 	public characters: Array<Character>;
@@ -20,7 +19,7 @@ export class CharactersComponent implements OnInit, OnDestroy {
 
 	getAllCharacters(): void {
 		this.charSubscription = this.httpService
-			.fetchCharacters()
+			.getCharacters()
 			.subscribe((charList: APIResponse<Character>) => {
 				this.characters = charList.results;
 			});
