@@ -9,7 +9,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class CharactersComponent implements OnInit, OnDestroy {
 	public characters: Array<Character>;
-	private charSubscription: Subscription;
+	private charactersSub: Subscription;
 
 	constructor(private httpService: HttpService) {}
 
@@ -18,16 +18,16 @@ export class CharactersComponent implements OnInit, OnDestroy {
 	}
 
 	getAllCharacters(): void {
-		this.charSubscription = this.httpService
+		this.charactersSub = this.httpService
 			.getCharacters()
-			.subscribe((charList: APIResponse<Character>) => {
-				this.characters = charList.results;
+			.subscribe((charactersList: APIResponse<Character>) => {
+				this.characters = charactersList.results;
 			});
 	}
 
 	ngOnDestroy(): void {
-		if (this.charSubscription) {
-			this.charSubscription.unsubscribe();
+		if (this.charactersSub) {
+			this.charactersSub.unsubscribe();
 		}
 	}
 }
