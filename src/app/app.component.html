@@ -2,7 +2,7 @@
 	<header class="center">
 		<img src="../assets/img/logo.png" alt="" />
 	</header>
-	<app-search-bar></app-search-bar>
+	<app-search-bar (searchItem)="getSearchItem($event)"></app-search-bar>
 
-	<app-characters></app-characters>
+	<app-home [searchItem]="searchItem"></app-home>
 </div>
