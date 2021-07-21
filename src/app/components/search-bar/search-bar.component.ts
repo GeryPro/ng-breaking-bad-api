@@ -33,7 +33,6 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 		this.searchSub = fromEvent(this.characterSearchInput.nativeElement, 'keyup')
 			.pipe(
 				map((event: any) => event.target.value),
-				filter((res) => res.length > 2),
 				debounceTime(500),
 				distinctUntilChanged()
 			)

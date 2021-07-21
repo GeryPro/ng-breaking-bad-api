@@ -1,4 +1,10 @@
-import { Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import {
+	Input,
+	OnChanges,
+	OnDestroy,
+	Output,
+	SimpleChanges,
+} from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Character } from 'src/app/models';
@@ -10,8 +16,9 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class HomeComponent implements OnInit, OnChanges, OnDestroy {
 	@Input() searchItem: string;
+	isLoading: boolean = true;
 
-	characters: Array<Character>;
+	characters: Array<Character> = [];
 	private charactersSub: Subscription;
 
 	constructor(private httpService: HttpService) {}
@@ -22,7 +29,7 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
 
 	ngOnChanges(changes: SimpleChanges): void {
 		if (changes && this.searchItem) {
-			this.getSearchedCharacters(this.searchItem);
+			this.getCharactersSearch(this.searchItem);
 		}
 
 		if (changes && !this.searchItem) {
@@ -35,14 +42,16 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
 			.getCharacters()
 			.subscribe((charactersList: Array<Character>) => {
 				this.characters = charactersList;
+				this.isLoading = false;
 			});
 	}
 
-	getSearchedCharacters(text: string): void {
+	getCharactersSearch(text: string): void {
 		this.charactersSub = this.httpService
 			.getSearchQuery(text)
 			.subscribe((charactersList: Array<Character>) => {
 				this.characters = charactersList;
+				this.isLoading = false;
 			});
 	}
 
