@@ -29,10 +29,12 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
 
 	ngOnChanges(changes: SimpleChanges): void {
 		if (changes && this.searchItem) {
+			this.isLoading = true;
 			this.getCharactersSearch(this.searchItem);
 		}
 
 		if (changes && !this.searchItem) {
+			this.isLoading = true;
 			this.getAllCharacters();
 		}
 	}
