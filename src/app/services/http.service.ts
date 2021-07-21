@@ -16,9 +16,10 @@ export class HttpService {
 	}
 
 	getSearchQuery(text: string): Observable<Array<Character>> {
+		let query = text;
 		if (text.includes(' ')) {
-			text.replace(' ', '+');
+			query = text.replace(' ', '+');
 		}
-		return this.http.get<Array<Character>>(`${this.BASE_URL}?name=${text}`);
+		return this.http.get<Array<Character>>(`${this.BASE_URL}?name=${query}`);
 	}
 }

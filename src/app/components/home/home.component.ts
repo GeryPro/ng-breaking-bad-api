@@ -1,10 +1,4 @@
-import {
-	Input,
-	OnChanges,
-	OnDestroy,
-	Output,
-	SimpleChanges,
-} from '@angular/core';
+import { Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Character } from 'src/app/models';
@@ -44,6 +38,7 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
 			.getCharacters()
 			.subscribe((charactersList: Array<Character>) => {
 				this.characters = charactersList;
+				console.log(charactersList);
 				this.isLoading = false;
 			});
 	}
