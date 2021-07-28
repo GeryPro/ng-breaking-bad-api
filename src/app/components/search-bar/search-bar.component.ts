@@ -11,10 +11,10 @@ import {
 import {
 	debounceTime,
 	distinctUntilChanged,
-	filter,
 	map,
+	takeUntil,
 } from 'rxjs/operators';
-import { fromEvent, Subscription } from 'rxjs';
+import { fromEvent, Subject } from 'rxjs';
 
 @Component({
 	selector: 'app-search-bar',
@@ -25,27 +25,21 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 	characterSearchInput: ElementRef;
 	@Output() searchItem = new EventEmitter<string>();
 
-	private searchSub: Subscription;
-
-	constructor() {}
+	private _destroyed$ = new Subject();
 
 	ngOnInit(): void {
-		this.searchSub = fromEvent(this.characterSearchInput.nativeElement, 'keyup')
+		fromEvent(this.characterSearchInput.nativeElement, 'keyup')
 			.pipe(
 				map((event: any) => event.target.value),
 				debounceTime(500),
-				distinctUntilChanged()
+				distinctUntilChanged(),
+				takeUntil(this._destroyed$)
 			)
-			.subscribe((text: string) => this.newSearch(text));
-	}
-
-	newSearch(text: string) {
-		this.searchItem.emit(text);
+			.subscribe((text: string) => this.searchItem.emit(text));
 	}
 
 	ngOnDestroy(): void {
-		if (this.searchSub) {
-			this.searchSub.unsubscribe();
-		}
+		this._destroyed$.next();
+		this._destroyed$.complete();
 	}
 }

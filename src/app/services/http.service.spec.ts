@@ -4,9 +4,9 @@ import {
 	HttpClientTestingModule,
 	HttpTestingController,
 } from '@angular/common/http/testing';
-import { Character } from '../models';
+import { Character } from '../interfaces/Character';
 
-fdescribe('HttpService', () => {
+describe('HttpService', () => {
 	let httpService: HttpService;
 	let httpTestingController: HttpTestingController;
 	const testCharacters: Character[] = [

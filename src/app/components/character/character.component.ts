@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Character } from 'src/app/models';
+import { Character } from 'src/app/interfaces/Character';
 
 @Component({
 	selector: 'app-character',
@@ -7,6 +7,4 @@ import { Character } from 'src/app/models';
 })
 export class CharacterComponent {
 	@Input() character: Character;
-
-	constructor() {}
 }
