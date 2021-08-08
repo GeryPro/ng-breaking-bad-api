@@ -7,4 +7,5 @@ import { Character } from 'src/app/interfaces/Character';
 })
 export class CharacterComponent {
 	@Input() character: Character;
+	@Input('id') characterId: number;
 }

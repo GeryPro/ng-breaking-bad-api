@@ -29,6 +29,7 @@ describe('CharactersComponent', () => {
 		fixture = TestBed.createComponent(CharacterComponent);
 		component = fixture.componentInstance;
 		component.character = testCharacter;
+		component.characterId = 1;
 		fixture.detectChanges();
 	});
 
@@ -60,7 +61,7 @@ describe('CharactersComponent', () => {
 	});
 
 	it(`should have an actor's name`, () => {
-		const portrayedBy = fixture.nativeElement.querySelector('#portrayed-by');
+		const portrayedBy = fixture.nativeElement.querySelector('#portrayed-by-1');
 
 		expect(portrayedBy.textContent.trim()).toEqual(
 			`Actor Name: ${testCharacter.portrayed}`
@@ -68,7 +69,7 @@ describe('CharactersComponent', () => {
 	});
 
 	it('should have a nickname', () => {
-		const nickname = fixture.nativeElement.querySelector('#nickname');
+		const nickname = fixture.nativeElement.querySelector('#nickname-1');
 
 		expect(nickname.textContent.trim()).toEqual(
 			`Nickname: ${testCharacter.nickname}`
@@ -76,7 +77,7 @@ describe('CharactersComponent', () => {
 	});
 
 	it('should have a birthday', () => {
-		const birthday = fixture.nativeElement.querySelector('#birthday');
+		const birthday = fixture.nativeElement.querySelector('#birthday-1');
 
 		expect(birthday.textContent.trim()).toEqual(
 			`Birthday: ${testCharacter.birthday}`
@@ -84,7 +85,7 @@ describe('CharactersComponent', () => {
 	});
 
 	it(`should have a character's status`, () => {
-		const status = fixture.nativeElement.querySelector('#status');
+		const status = fixture.nativeElement.querySelector('#status-1');
 
 		expect(status.textContent.trim()).toEqual(
 			`Status: ${testCharacter.status}`

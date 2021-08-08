@@ -5,7 +5,7 @@
 	<section class="cards">
 		<ng-container *ngIf="characters.length; else noResults">
 			<ng-container *ngFor="let character of characters; let i = index">
-				<app-character [character]="character"></app-character>
+				<app-character [character]="character" [id]="i"></app-character>
 			</ng-container>
 		</ng-container>
 		<ng-template #noResults>

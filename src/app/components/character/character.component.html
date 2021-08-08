@@ -15,16 +15,18 @@
 		<div class="card-back">
 			<h1>{{ character.name }}</h1>
 			<ul>
-				<li id="portrayed-by">
+				<li id="{{ 'portrayed-by-' + characterId }}">
 					<strong>Actor Name:</strong> {{ character.portrayed }}
 				</li>
-				<li id="nickname">
+				<li id="{{ 'nickname-' + characterId }}">
 					<strong>Nickname:</strong> {{ character.nickname }}
 				</li>
-				<li id="birthday">
+				<li id="{{ 'birthday-' + characterId }}">
 					<strong>Birthday:</strong> {{ character.birthday }}
 				</li>
-				<li id="status"><strong>Status:</strong> {{ character.status }}</li>
+				<li id="{{ 'status-' + characterId }}">
+					<strong>Status:</strong> {{ character.status }}
+				</li>
 			</ul>
 		</div>
 	</div>
